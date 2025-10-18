@@ -1,1 +1,41 @@
+The ls command shows a list of archive information.
+
+Most commands follow a similar syntax pattern:
+command [optiones…] [arguments…]
+
+e.g. as we enter the command ls without any options or argument, it returns by default a list of archives
+contained in the same current directory.
+
+**An argument is used to specify something about the command to run.
+
+e.g. ls Documents
+As a result, it shows a list of the archives included into the Documents directory.
+
+Given the fact that Linux is opensource, some developers have added their own commands.
+e.g. aptitude, which accepts moo as an argument.
+
+sysadmin@localhost:~$ aptitude moo  
+There are no Easter Eggs in this program.
+
+**Options can be used to modify the behaviour of a command.
+In the previous example, ls shows the list of archive information, but if we added -l it would show a long screen result and 
+provide more info about the listed archives.
+
+By default, the command ls prints the values alphabetically, by adding option -r it will print the results alphabetically sorted by in the opposite way.
+
+More than one options can be used separately or combined. 
+All these ones will have the same effect:
+ls -l -r
+ls -rl
+ls -lr
+
+
+
+
+
+
+
+
+
+
 
