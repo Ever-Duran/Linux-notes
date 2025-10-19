@@ -60,5 +60,56 @@ An absolute path specifies the full path from the root directory (/) to the targ
 A relative path specifies the location of a file or directory relative to your current working directory.
 (Does not start with a /)
 
+sysadmin@localhost:~$ cd Documents                                                
+sysadmin@localhost:~/Documents$ cd School/Art                                   
+sysadmin@localhost:~/Documents/School/Art$ pwd                                  
+/home/sysadmin/Documents/School/Art                                             
+sysadmin@localhost:~/Documents/School/Art$ 
+
+THE result of the command pwd shows the absolute path to the Art directory.
+The command followed this route
+cd School/Art
+
+But it could also follow this one with the same results:
+cd School
+cd Art
+
+
+File Navigation (Using cd & Paths)
+
+cd ..	Move to parent directory
+cd -	Switch to previous directory
+cd ~	Go to home directory
+cd /	Go to root directory
+
+sysadmin@localhost:~/Documents/School$ cd ~
+sysadmin@localhost:~$
+
+
+ENG
+************************************************************************************************************
+Symbol   File Type             Description
+d        directory             A file used to contain other files.
+-        regular file          Includes readable files, images, binary files, and compressed files.
+l        symbolic link         Points to another file.
+s        socket                Allows communication between processes.
+p        pipe                  Allows communication between processes.
+b        block device file     Used for communication with storage devices.
+c        character device file Used for communication with hardware.
+
+SPA
+**********************************************************************************************************
+Símbolo   Tipo de archivo       Descripción
+d         directorio            Un archivo usado para contener otros archivos.
+-         archivo ordinario     Incluye archivos leíbles, imágenes, archivos binarios, y archivos comprimidos.
+l         enlaces simbólicos    Apunta a otro archivo.
+s         socket                Permite la comunicación entre procesos.
+p         tubería (pipe)        Permite la comunicación entre procesos.
+b         archivo bloque        Usado para comunicaciones con dispositivos de almacenamiento.
+c    archivo carácter    Usado para comunicaciones con el equipo (hardware).
+
+
+
+
 
 
