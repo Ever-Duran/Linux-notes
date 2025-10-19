@@ -29,13 +29,36 @@ ls -l -r
 ls -rl
 ls -lr
 
+WE just used the argument moo but it's possible to modify it by using the option -v (verbose)
+
+sysadmin@localhost:~$ aptitude -vv moo
+Didn't I already tell you that there are no Easter Eggs in this program?
+sysadmin@localhost:~$ aptitude -vvv moo
+Stop it!
+
+Remember you can combine them as you want:
+aptitude -v -v moo
+aptitude -vv moo
+
+**
+
+To find out where you're at in the archive system, use the command pwd.
+pwd command prints the working directory, your current location in the archive system.
+
+cd Documents
+Takes you to the Documents directory
+
+cd / 
+brings you back to the previous root directory
 
 
+In the Linux terminal, absolute and relative routes (also called paths) refer to the way you specify the location of files or directories in the file system.
+
+An absolute path specifies the full path from the root directory (/) to the target file or directory.
 
 
-
-
-
+A relative path specifies the location of a file or directory relative to your current working directory.
+(Does not start with a /)
 
 
 
