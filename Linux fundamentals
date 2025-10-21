@@ -182,6 +182,15 @@ En el caso de enlaces simbólicos, un archivo que apunta a otro archivo, el nomb
 lrwxrwxrwx. 1 root root 22 Nov 6 2012 /etc/grub.conf -> ../boot/grub/grub.conf
 Los enlaces simbólicos están fuera del alcance de este módulo, pero están cubiertos en el curso NDG Linux Essentials.
 
+***
+Sorting files:
+
+-t sorts files according to timestamp
+
+-s sorts files according to size
+
+-r reverses the sorting method
+
 
 
 
