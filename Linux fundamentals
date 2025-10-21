@@ -191,8 +191,33 @@ Sorting files:
 
 -r reverses the sorting method
 
+*********************************************
+su is used to switch to another user account in the current shell session. By default, it switches to the root user.
+
+su -
+su -l
+su --login
+
+#: indicates that you're logged in as root (a normal user would see $)
+root@localhost:~# exit
+
+To logout use exit
+root@localhost:~# exit
+logout
+sysadmin@localhost:~$
+
+sl
+If the sl command is installed, it runs a "Steam Locomotive" animation in the terminal.
+
+**
+sudo (short for "superuser do") is a powerful command in Linux and Unix-like systems 
+that allows a permitted user to run a command as another user — most commonly the root (superuser) — without fully switching to that user.
+
+The sudo -u option in Linux is used to run a command as a different user, not just root.
+sudo -u <username> <command>
 
 
+- commands run with sudo are executed as root by default, unless you specify a different user using the -u option.
 
 
 
