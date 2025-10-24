@@ -219,11 +219,80 @@ sudo -u <username> <command>
 
 - commands run with sudo are executed as root by default, unless you specify a different user using the -u option.
 
+************************************
+
+PERMISSIONS:
+Let’s break down rw-r--r--:
+
+rw-  r--  r--
+│    │    │
+│    │    └── others (everyone else)
+│    └────── group
+└─────────── owner (user)
+
+| Symbol | Meaning       | Description                                            |
+| :----- | :------------ | :----------------------------------------------------- |
+| **r**  | read          | can view the contents of the file (e.g. `cat`, `less`) |
+| **w**  | write         | can modify or delete the file                          |
+| **x**  | execute       | can run the file as a program/script                   |
+| **-**  | no permission | permission not granted                                 |
+
+
+So for rw-r--r--:
+Owner (user) → rw- → read and write
+Group → r-- → read only
+Others → r-- → read only
+
+✅ Summary:
+
+The file owner can read and modify the file.
+Everyone else can only read it.
+No one can execute it.
 
 
 
+-r--rw-rwx. 1 sysadmin staff 999 Apr  10  2013 /home/sysadmin/test
 
 
+How Linux decides which permissions to use
+When someone tries to access a file, Linux checks permissions in this order:
+User (owner) → If you are the file’s owner, Linux uses the user permissions.
+Group → If you’re not the owner but belong to the file’s group, Linux uses the group permissions.
+Others → If neither of the above, Linux uses the others permissions.
+
+Once one condition matches, Linux stops checking the rest — permissions are not cumulative.
+
+Applying that to your example
+User owner: sysadmin
+Permissions: r-- → read only
+Group: staff
+Permissions: rw- → read and write
+Others:
+Permissions: rwx → read, write, and execute
+
+So:
+The user sysadmin (even if also a member of the staff group)
+🔸 only gets r-- — can read the file, but cannot write or execute it.
+
+Members of the staff group (who aren’t the file owner)
+🔸 get rw- — can read and write.
+
+Everyone else
+🔸 gets rwx — full access.
+
+
+***
+Changing permissions:
+
+chmod - change access mode
+
+In Linux, there are two main methods to change file and directory permissions:
+
+1. Symbolic method
+This method uses letters to represent users and permissions.
+
+2. Numeric (octal) method
+This method uses numbers to represent permission sets.
 
 
 
