@@ -294,5 +294,28 @@ This method uses letters to represent users and permissions.
 2. Numeric (octal) method
 This method uses numbers to represent permission sets.
 
+*********************************************
+
+sysadmin@localhost:~/Documents$ chmod u+x hello.sh
+
+
+**
+The command chown is used to change the file owner.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
