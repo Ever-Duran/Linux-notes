@@ -339,11 +339,88 @@ for paging through long files (unlike head and tail, which only show fixed porti
 
 e.g. head -n 3 alpha.txt
 
+***
+
+The mv command in Linux is used to move or rename files and directories. It’s one of the most commonly used file management commands.
+
+sysadmin@localhost:~/Documents$ cp /etc/passwd .
+(. means “the current directory.”)
+
+**
+
+The dd command in Linux is a powerful low-level data copying and conversion tool. 
+It can read, write, and convert raw data between files, devices, or partitions — often used for tasks like creating bootable USBs, 
+backing up disks, or wiping data.
+
+sysadmin@localhost:~$ dd if=/dev/zero of=/tmp/swapex bs=1M count=50 
+50+0 records in
+50+0 records out
+52428800 bytes (52 MB) copied, 0.825745 s, 635 MB/s
 
 
+dd if=<input_file> of=<output_file> [options]
+if= → input file (source)
+of= → output file (destination)
+
+1. sudo dd if=/dev/sda of=/dev/sdb bs=4M status=progress
+Copies everything from disk /dev/sda to /dev/sdb using a block size of 4 MB and showing progress.
+
+2. Create a disk image
+sudo dd if=/dev/sda of=/home/user/disk_backup.img bs=4M status=progress
+
+Makes a full image of the /dev/sda drive.
+
+3. Write an image to a USB drive
+sudo dd if=ubuntu.iso of=/dev/sdb bs=4M status=progress oflag=sync
+
+Writes a bootable ISO file to a USB stick (/dev/sdb).
+
+4. Wipe a disk (dangerous!)
+sudo dd if=/dev/zero of=/dev/sdb bs=1M status=progress
+
+Overwrites the entire disk with zeros — completely erasing all data.
+Be extremely careful with of= — one typo can destroy your system.
+
+5. Create a file of a specific size
+dd if=/dev/zero of=sample.bin bs=1M count=100
+
+Creates a 100 MB file filled with zeros.
 
 
+| Option            | Meaning                                                |
+| ----------------- | ------------------------------------------------------ |
+| `bs=`             | Block size (e.g., `bs=1M` = read/write 1 MB at a time) |
+| `count=`          | Number of blocks to copy                               |
+| `skip=`           | Skip blocks from input before copying                  |
+| `seek=`           | Skip blocks on output before writing                   |
+| `status=progress` | Show ongoing progress                                  |
+| `conv=`           | Convert data (e.g., `conv=noerror,sync`)               |
 
+
+For example, when you clone a full disk you don't have to specify the size or count.
+
+dd if=/dev/sda of=/dev/sdb
+
+****
+The mv command in Linux is used to move or rename files and directories. It’s one of the most commonly used file management commands.
+
+sysadmin@localhost:~$ cd ~/Documents
+
+sysadmin@localhost:~/Documents$ mv people.csv Work
+
+sysadmin@localhost:~/Documents$ ls Work                                         
+people.csv
+(The file will keep its name if you don't specify a new name)
+
+mv can be used for a lot of files as long as the last argument is the destination:
+
+sysadmin@localhost:~/Documents$ mv numbers.txt letters.txt alpha.txt School        
+sysadmin@localhost:~/Documents$ ls School                                       
+Art  Engineering  Math  alpha.txt  letters.txt  numbers.txt 
+
+*moving a file to the same directory is another way of changing its name:
+
+mv animals.txt zoo.txt
 
 
 
