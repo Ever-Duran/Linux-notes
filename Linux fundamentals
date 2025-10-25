@@ -302,6 +302,44 @@ sysadmin@localhost:~/Documents$ chmod u+x hello.sh
 **
 The command chown is used to change the file owner.
 
+sudo chown root hello.sh
+
+ls -l hello.sh
+
+
+**
+
+cat - concatenate
+
+type the command and the file you want to see. It's recommended to use it with small files which don't require
+screen scrolling.
+
+sysadmin@localhost:~/Documents$ cat animals.txt                            
+1 retriever                                                             
+2 badger                                                                
+3 bat                                                                  
+4 wolf                                                                  
+5 eagle
+
+A method to see longer files:
+The head and tail commands in Linux are used to display the beginning and end of text files, respectively. 
+They’re very handy for quickly inspecting files or command outputs.
+
+Here’s a breakdown:
+1. head command
+Purpose: Displays the first part (default: 10 lines) of a file or output.
+
+2. tail command
+Purpose: Displays the last part (default: 10 lines) of a file or output.
+
+You can also use more and less to view file contents in Linux, and they’re especially useful 
+for paging through long files (unlike head and tail, which only show fixed portions).
+
+3. -n command it's used with head and tail to specify how many lines to show.
+
+e.g. head -n 3 alpha.txt
+
+
 
 
 
