@@ -561,12 +561,256 @@ I am 37 years old.
 My favorite food is avocados.
 I have 2 dogs.
 
+** means “zero or more occurrences of the previous character.”
+sysadmin@localhost:~/Documents$ grep 're*d' red.txt
+red
+reeed
+rd
+reed
+
+**
+* It means the absence or presence of a character.[oe]
+sysadmin@localhost:~/Documents$ grep 'r[oe]*d' red.txt
+red
+reeed
+rd
+rod
+reed
+
+** All characters matches even if there's zero presence of z.
+
+sysadmin@localhost:~/Documents$ grep 'z*' red.txt
+red
+reef
+rot
+reeed
+rd
+rod
+roof
+reed
+root
+reel
+read
+
+
+sysadmin@localhost:~/Documents$ grep 'e*' red.txt
+red
+reef
+rot
+reeed
+rd
+rod
+roof
+reed
+root
+reel
+read
+
+
+//SHUTDOWN://
+
+root@localhost:~# shutdown now                                         
+                                                                                
+Broadcast message from sysadmin@localhost                                       
+        (/dev/pts/0) at 2:05 ...                                              
+                                                                                
+The system is going down for maintenance NOW!
+
+You're required to add a time argument or the number of minutes usign +minutes.
+Your system might be configured in a different time zone so you might check it out first with the command date.
+
+You can also add a message as argument:
+
+root@localhost:~# shutdown +1 "Goodbye World!"                                  
+                                                                                
+Broadcast message from sysadmin@localhost                                       
+        (/dev/pts/0) at 3:07 ...                                              
+                                                                                
+The system is going down for maintenance in 1 minute!                           
+Goodbye World!                                                                  
+shutdown: Unable to shutdown system                                             
+root@localhost:~#                                                             
+Broadcast message from sysadmin@localhost                                       
+        (/dev/pts/0) at 3:08 ...                                              
+                                                                                
+The system is going down for maintenance NOW!                                   
+Goodbye World!
+
+
+
+****
+
+Network configuration
+ifconfig (interface configuration)
+
+
+-iwconfig is similar to ifconfig but it refers to wireless network interfaces.
+
+root@localhost:~# ifconfig                                     
+eth0      Link encap:Ethernet  HWaddr 02:42:c0:a8:01:02                         
+          inet addr:192.168.1.2  Bcast:192.168.1.255  Mask:255.255.255.0        
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1                    
+          RX packets:59 errors:0 dropped:0 overruns:0 frame:0                   
+          TX packets:86 errors:0 dropped:0 overruns:0 carrier:0                 
+          collisions:0 txqueuelen:1000                                          
+          RX bytes:4346 (4.3 KB)  TX bytes:5602 (5.6 KB)                        
+                                                                                
+lo        Link encap:Local Loopback                                             
+          inet addr:127.0.0.1  Mask:255.0.0.0                                   
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1                              
+          RX packets:2 errors:0 dropped:0 overruns:0 frame:0                    
+          TX packets:2 errors:0 dropped:0 overruns:0 carrier:0                  
+          collisions:0 txqueuelen:1000                                          
+          RX bytes:100 (100.0 B)  TX bytes:100 (100.0 B)           
+
+
+--
+root@localhost:~# ifconfig                                     
+eth0      Link encap:Ethernet  HWaddr 02:42:c0:a8:01:02                         
+          inet addr:192.168.1.2  Bcast:192.168.1.255  Mask:255.255.255.0        
+          UP
+**UP means it's currently active**
+
+lo        Link encap:Local Loopback                                             
+          inet addr:127.0.0.1  Mask:255.0.0.0                                   
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1                              
+          RX packets:2 errors:0 dropped:0 overruns:0 frame:0                    
+          TX packets:2 errors:0 dropped:0 overruns:0 carrier:0                  
+          collisions:0 txqueuelen:1000                                          
+          RX bytes:100 (100.0 B)  TX bytes:100 (100.0 B)
+
+**lo is a loopback device. A loopback device is a virtual network interface or 
+storage device that sends data back to itself instead of to another physical device.
+
+********
+Visualizing processes
+
+User who have admin rights can manage any process of any user, even stop any process.
+
+ps : This command can be use to see the processes.
+
+sysadmin@localhost:~$ ps
+  PID TTY          TIME CMD
+   80 pts/0        00:00:00 bash
+   94 pts/0        00:00:00 ps
+
+| Column    | Description                                        |
+| --------- | -------------------------------------------------- |
+| **UID**   | User who owns the process                          |
+| **PID**   | Process ID (unique per running process)            |
+| **PPID**  | Parent Process ID (the process that started it)    |
+| **C**     | CPU usage percentage                               |
+| **STIME** | Start time                                         |
+| **TTY**   | Terminal associated with the process (`?` if none) |
+| **TIME**  | Total CPU time used                                |
+| **CMD**   | The command that launched the process              |
 
 
 
 
+| Command  | Meaning                                                  | Example Output                         |
+| -------- | -------------------------------------------------------- | -------------------------------------- |
+| `ps`     | Shows processes **in the current shell**                 | Usually just `bash`, maybe `ps` itself |
+| `ps -e`  | Show **all** processes on the system                     | Every process from all users           |
+| `ps -f`  | “Full format” — adds more columns                        | UID, PID, PPID, CMD                    |
+| `ps -ef` | Show **every process in full detail**                    | Most common form on Linux              |
+| `ps aux` | BSD-style syntax; shows all processes with CPU/mem usage | Another popular variant                |
 
 
+if you use ps -e
+
+sysadmin@localhost:~$ ps -e
+  PID TTY          TIME CMD                                                     
+    1 pts/0        00:00:00 init                                                    
+   33 ?            00:00:00 rsyslogd                                                
+   37 ?            00:00:00 cron                                                    
+   39 ?            00:00:00 sshd                                                    
+   56 ?            00:00:00 named                                                   
+   69 pts/0        00:00:00 login                                                   
+   79 pts/0        00:00:00 bash                                                    
+   94 pts/0        00:00:00 ps 
+
+
+
+ps -ef
+it can show you more detailed results
+
+sysadmin@localhost:~$ ps -ef
+UID        PID  PPID  C STIME TTY          TIME CMD                             
+root         1     0  0 19:16 pts/0        00:00:00 /sbin??? /init                  
+syslog      33     1  0 19:16 ?            00:00:00 /usr/sbin/rsyslogd              
+root        37     1  0 19:16 ?            00:00:00 /usr/sbin/cron                  
+root        39     1  0 19:16 ?            00:00:00 /usr/sbin/sshd                  
+bind        56     1  0 19:16 ?            00:00:00 /usr/sbin/named -u bind         
+root        69     1  0 19:16 pts/0        00:00:00 /bin/login -f                   
+sysadmin    79    69  0 19:16 pts/0        00:00:00 -bash                           
+sysadmin    95    79  0 19:43 pts/0        00:00:00 ps -ef  
+
+
+
+**
+PACKAGE MANAGEMENT:
+
+*Before installing anything we recommend using apt-get update
+
+
+*To look for a key inside of these packages:
+apt-cache search.
+
+apt-cache search [keyword]
+
+--e.g.
+sysadmin@localhost:~$ apt-cache search cow                                      
+cowsay - configurable talking cow
+
+Once you find that package to install, you can use the command apt-get install . 
+
+sysadmin@localhost:~$ sudo apt-get install cowsay                               
+[sudo] password for sysadmin:                                                   
+Reading package lists... Done                                                   
+Building dependency tree                                                        
+Reading state information... Done                                               
+Suggested packages:                                                             
+  filters                                                                       
+The following NEW packages will be installed:                                   
+  cowsay                                                                        
+0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.                  
+Need to get 0 B/18.5 kB of archives.                                            
+After this operation, 90.1 kB of additional disk space will be used.            
+                                                                                
+Selecting previously unselected package cowsay.                                 
+(Reading database ... 24313 files and directories currently installed.)         
+Preparing to unpack .../cowsay_3.03+dfsg1-6_all.deb ...                         
+Unpacking cowsay (3.03+dfsg1-6) ...                                             
+Processing triggers for man-db (2.6.7.1-1ubuntu1) ...                           
+Setting up cowsay (3.03+dfsg1-6) ...
+
+
+--*
+apt-get install can also be used to update a package if it's already installed. 
+
+
+1. Use apt-get update to update the package cache.
+
+2. use apt-get upgrade to update all packages with their dependencies.
+
+sysadmin@localhost:~$ sudo apt-get update                                       
+[sudo] password for sysadmin:                                                   
+Ign file: amd64/ InRelease                                                      
+Ign file: amd64/ Release.gpg                                                    
+Ign file: amd64/ Release                                                        
+Reading package lists... Done                                                   
+sysadmin@localhost:~$ sudo apt-get upgrade                                      
+Reading package lists... Done                                                   
+Building dependency tree                                                        
+Reading state information... Done                                               
+Calculating upgrade... Done                                                     
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+
+--
+An admin can run this command apt-get remove to remove a package 
+or 
+apt-get purge  to purge a package completely from the system.
 
 
 
