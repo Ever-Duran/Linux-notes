@@ -422,9 +422,66 @@ Art  Engineering  Math  alpha.txt  letters.txt  numbers.txt
 
 mv animals.txt zoo.txt
 
+*****
+
+* rm : this command is used to delete files and directories
+
+* rm by default, rm ignores (actually refuses to remove) directories.
+
+To remove directories with rm, you need specific options:
+
+-r or --recursive: remove directories and their contents recursively
+rm -r mydir
+
+-rf: same as above, but force removal without confirmation
+rm -rf mydir
+
+
+**
+
+The grep command is one of the most commonly used tools in Unix/Linux systems — it’s used to search for text patterns inside files or output.
+
+grep [options] PATTERN [FILE...]
+PATTERN → what you’re searching for (a word, phrase, or regex)
+
+FILE → the file(s) to search in
+
+Examples:
+1. Search for a word in a file
+grep "hello" file.txt
+
+2. Ignore case
+grep -i "hello" file.txt
+
+3. Show line numbers
+grep -n "hello" file.txt
+
+4. Search recursively in directories
+grep -r "main()" src/
+
+5. Show only filenames that contain matches
+grep -l "TODO" *.py
+
+6. Invert match (show lines without the pattern)
+grep -v "error" log.txt
+
+7. Use regular expressions
+grep -E "cat|dog" animals.txt
 
 
 
+| Pattern | Meaning                                 | Example                  | Description                             |                                         |                                   |
+| ------- | --------------------------------------- | ------------------------ | --------------------------------------- | --------------------------------------- | --------------------------------- |
+| `.`     | Any single character                    | `gr.p`                   | Matches “grep”, “grap”, “gr1p”          |                                         |                                   |
+| `^`     | Start of line                           | `^Hello`                 | Matches lines beginning with “Hello”    |                                         |                                   |
+| `$`     | End of line                             | `world$`                 | Matches lines ending with “world”       |                                         |                                   |
+| `[]`    | Character set                           | `gr[ae]y`                | Matches “gray” or “grey”                |                                         |                                   |
+| `[^ ]`  | Negated set                             | `gr[^a]y`                | Matches “grey” but not “gray”           |                                         |                                   |
+| `*`     | 0 or more of previous char              | `go*gle`                 | Matches “ggle”, “gogle”, “google”, etc. |                                         |                                   |
+| `+`     | 1 or more of previous char *(use `-E`)* | `go+gle`                 | Matches “gogle”, “google”               |                                         |                                   |
+| `?`     | 0 or 1 of previous char *(use `-E`)*    | `colou?r`                | Matches “color” or “colour”             |                                         |                                   |
+| `       | `                                       | Alternation *(use `-E`)* | `cat                                    | dog`                                    | Matches lines with “cat” or “dog” |
+| `()`    | Grouping *(use `-E`)*                   | `(cat                    | dog)s?`                                 | Matches “cat”, “cats”, “dog”, or “dogs” |                                   |
 
 
 
