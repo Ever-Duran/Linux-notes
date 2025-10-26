@@ -813,6 +813,71 @@ or
 apt-get purge  to purge a package completely from the system.
 
 
+*********************
+UPDATING USER'S PASSWORDS:
+
+* passwd 
+it's used to update a user's password.
+
+sysadmin@localhost:~$ passwd                                                    
+Changing password for sysadmin.                                                 
+(current) UNIX password: netlab123                                                       
+Enter new UNIX password:                                                       
+Retype new UNIX password:                                                       
+passwd: password updated successfully
+
+*If the user wants to see the password's information, they can use the option -S
+
+sysadmin@localhost:~$ passwd -S sysadmin                                       
+sysadmin P 12/20/2017 0 99999 7 -1
+
+
+| Field          | Meaning              | Explanation                                                                                     |
+| -------------- | -------------------- | ----------------------------------------------------------------------------------------------- |
+| **sysadmin**   | Username             | The account name queried.                                                                       |
+| **P**          | Password status      | `P` = Password is **set** (active). <br>`L` = Locked. <br>`NP` = No password.                   |
+| **12/20/2017** | Last password change | Date when the password was last changed.                                                        |
+| **0**          | Minimum days         | Minimum number of days between password changes (0 = can change anytime).                       |
+| **99999**      | Maximum days         | Maximum number of days the password is valid before it must be changed (99999 ≈ no expiration). |
+| **7**          | Warning period       | Days before expiration when the user is warned to change the password.                          |
+| **-1**         | Inactive period      | Days after password expiration that the account remains active (-1 = never expires).            |
+
+
+****
+Redirecting:
+
+Redirection means changing the default input or output streams of a command.
+By default:
+Standard input (stdin) → your keyboard
+Standard output (stdout) → your terminal
+Standard error (stderr) → your terminal
+
+
+| FD    | Name     | Stream          | Description                             |
+| ----- | -------- | --------------- | --------------------------------------- |
+| **0** | `stdin`  | Standard Input  | Keyboard input or input redirection.    |
+| **1** | `stdout` | Standard Output | Normal program output (e.g., terminal). |
+| **2** | `stderr` | Standard Error  | Error messages and diagnostics.         |
+
+
+
+
+In this section we're gonna use STDOUT.
+
+sysadmin@localhost:~/Documents$ cat food.txt > newfile1.txt
+sysadmin@localhost:~/Documents$ cat newfile1.txt         
+Food is good.     
+sysadmin@localhost:~/Documents$ echo "I like food." > newfile1.txt
+sysadmin@localhost:~/Documents$ cat newfile1.txt             
+I like food.  
+
+to make sure you don't overwrite the file you can use double >> 
+
+sysadmin@localhost:~/Documents$ echo "This food is good." >> newfile1.txt
+sysadmin@localhost:~/Documents$ cat newfile1.txt              
+I like food.                                                      
+This food is good.      
+
 
 
 
