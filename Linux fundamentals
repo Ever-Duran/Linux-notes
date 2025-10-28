@@ -878,6 +878,128 @@ sysadmin@localhost:~/Documents$ cat newfile1.txt
 I like food.                                                      
 This food is good.      
 
+**************
+
+TEXT EDITOR:
+
+vi is the text editor used in Linux. Some distributions might no use vi but an improved version called: vim.
+to create a new file
+
+sysadmin@localhost:~$ vi newfile.txt
+
+At first, you'll see there's a command screen. It is used to write commands, like the ones used for going over the document,
+manipulate the text and access other modes. To come back to the command mode anytime, press the ESC key.
+
+| Action                       | Command       | Description                            |
+| ---------------------------- | ------------- | -------------------------------------- |
+| Move left                    | `h`           | Move the cursor left                   |
+| Move right                   | `l`           | Move the cursor right                  |
+| Move up                      | `k`           | Move the cursor up                     |
+| Move down                    | `j`           | Move the cursor down                   |
+| Delete a character           | `x`           | Deletes the character under the cursor |
+| Undo last change             | `u`           | Undo                                   |
+| Redo last undo               | `Ctrl + r`    | Redo                                   |
+| Copy (yank) a line           | `yy`          | Copy current line                      |
+| Paste                        | `p`           | Paste after cursor                     |
+| Cut (delete) a line          | `dd`          | Delete current line                    |
+| Move to start of line        | `0`           | Jump to the beginning of the line      |
+| Move to end of line          | `$`           | Jump to the end of the line            |
+| Search text                  | `/text`       | Search forward for “text”              |
+| Save file                    | `:w`          | Write (save) file                      |
+| Quit Vim                     | `:q`          | Quit Vim                               |
+| Save and quit                | `:wq` or `ZZ` | Save and quit                          |
+| Force quit (discard changes) | `:q!`         | Quit without saving                    |
+
+
+Standard	Vi	Meaning
+cut	d	 (delete)
+copy	y	copy (yank)
+paste	P | p	put (put)
+
+
+| Action                     | Command          | Description                                   |
+| -------------------------- | ---------------- | --------------------------------------------- |
+| Cut a line                 | `dd`             | Deletes (cuts) the current line               |
+| Cut 3 lines                | `3dd`            | Deletes (cuts) 3 lines starting at the cursor |
+| Cut a word                 | `dw`             | Deletes (cuts) a word                         |
+| Cut to end of line         | `d$`             | Deletes (cuts) from cursor to end of line     |
+| Cut text visually selected | `v` + move + `d` | Visually select text, then delete it          |
+| Cut three next words       | `d3w`            | Deletes (cuts) from cursor to end of line     |
+| Cut four characters of the left | `d4h`       | Visually select text, then delete it          |
+
+
+| Command | Motion        | Effect                  | Mode   |
+| ------- | ------------- | ----------------------- | ------ |
+| `cc`    | (entire line) | Change whole line       | Insert |
+| `cw`    | word          | Change word             | Insert |
+| `c3w`   | 3 words       | Change 3 words          | Insert |
+| `c5h`   | 5 chars left  | Change 5 chars backward | Insert |
+
+
+
+| Action                      | Command          | Description                       |
+| --------------------------- | ---------------- | --------------------------------- |
+| Copy a line                 | `yy`             | Copies current line               |
+| Copy 3 lines                | `3yy`            | Copies 3 lines                    |
+| Copy a word                 | `yw`             | Copies word from cursor           |
+| Copy to end of line         | `y$`             | Copies from cursor to end of line |
+| Copy visually selected text | `v` + move + `y` | Select text, then yank it         |
+
+
+| Command | Meaning                                                 |
+| ------- | ------------------------------------------------------- |
+| `p`     | Paste **after** the cursor (or below the current line)  |
+| `P`     | Paste **before** the cursor (or above the current line) |
+
+
+****
+Basic Searching in vi
+
+Forward Search
+/pattern
+
+Backward Search
+?pattern
+
+
+Insert mode (Normal Mode)
+
+| Command | Meaning                                | Cursor Position After               |
+| ------- | -------------------------------------- | ----------------------------------- |
+| `i`     | Insert before the cursor               | Before current character            |
+| `I`     | Insert at the beginning of the line    | Start of line                       |
+| `a`     | Append after the cursor                | After current character             |
+| `A`     | Append at the end of the line          | End of line                         |
+| `o`     | Open a new line **below** current line | At start of new line                |
+| `O`     | Open a new line **above** current line | At start of new line                |
+| `cw`    | Change (replace) word                  | Deletes word and enters insert mode |
+| `cc`    | Change (replace) whole line            | Deletes line and enters insert mode |
+
+
+
+
+EX MODE
+
+
+| Command         | Description                                                         |
+| --------------- | ------------------------------------------------------------------- |
+| `:w`            | Save (write) the file                                               |
+| `:q`            | Quit                                                                |
+| `:wq`           | Save and quit                                                       |
+| `:q!`           | Quit without saving changes                                         |
+| `:e filename`   | Edit another file                                                   |
+| `:r filename`   | Read (insert) another file at the cursor                            |
+| `:s/old/new/`   | Substitute first occurrence of “old” with “new” in the current line |
+| `:%s/old/new/g` | Substitute all occurrences in the file                              |
+| `:/pattern`     | Jump to line containing pattern                                     |
+| `:set number`   | Show line numbers                                                   |
+
+
+
+
+
+
+
 
 
 
