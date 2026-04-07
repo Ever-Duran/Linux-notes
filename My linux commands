@@ -1,0 +1,22 @@
+Format a USB
+*************
+
+Execute on the terminal:
+lsblk
+
+This will show you the connected disks. 
+It will look like this : 
+
+sda      8:0    0 512G  0 disk
+├─sda1   8:1    0 500G  0 part
+└─sda2   8:2    0  12G  0 part
+sdb      8:16   1  16G  0 disk
+└─sdb1   8:17   1  16G  0 part
+
+if the usb is mounted you must unmount it
+
+sudo umount /dev/sdb1
+(Replace sdb1 with the partition of your usb)
+
+
+
