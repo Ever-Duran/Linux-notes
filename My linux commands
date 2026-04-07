@@ -13,10 +13,26 @@ sda      8:0    0 512G  0 disk
 sdb      8:16   1  16G  0 disk
 └─sdb1   8:17   1  16G  0 part
 
-if the usb is mounted you must unmount it
+if the usb is mounted you must unmount it*
 
 sudo umount /dev/sdb1
-(Replace sdb1 with the partition of your usb)
+(Replace sdb1 with the partition of your usb)*
+
+If you have a lot of partitions: *
+sudo umount /dev/sdb*
 
 
+Now, format the USB: 
+* FAT32 ( compatible with Windows, Mac, Linux )
+sudo mkfs.vfat -F 32 /dev/sdb1
 
+* exFAT (it's best for large archives)
+sudo mkfs.exfat /dev/sdb1
+
+*EXT4 (only for Linux)
+sudo mkfs.ext4 /dev/sdb1
+
+
+NTFS:
+follow the steps but use this instead
+sudo mkfs.ntfs -f -L MI_USB /dev/sdb1
